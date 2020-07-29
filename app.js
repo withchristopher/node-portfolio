@@ -1,2 +1,2 @@
-console.log("Hello Node!");
-console.log(document);
+var profileDataArgs = process.argv.slice(2, process.argv.length);
+console.log(profileDataArgs);
