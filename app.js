@@ -1,39 +1,53 @@
-var profileDataArgs = process.argv.slice(2, process.argv.length);
-console.log(profileDataArgs);
+// var is function-scoped, so redeclaring it in a block will cause its value outside the block to change as well:
 
-const animalArray = ['dog', 'cat', 'pig'];
+var one = 'one: declared outside the block';
 
-animalArray.push('cow');
-
-const personObj = {
-    name: "Lernantino",
-    age: 99
-};
-
-personObj.age = 100;
-personObj.occupation = 'Developer';
-
-const printProfileData = (profileDataArr) => {
-    console.log(profileDataArr);
+if (true === true) {
+    var one = 'one: declared inside the block'; // notice: we redeclare 'one' here
+    console.log(one); // prints 'one: declared inside the block'
 }
 
-printProfileData(profileDataArgs);
+console.log(one); // also prints 'one: declared inside the block', because the variable was redeclared in the 'if' block. The outer 'var' variable was therefore destroyed and replaced by inner var variable.
 
-// Using function expression syntax
-const addNums = function(numOne, numTwo) {
-    return numOne + numTwo;
-};
+// 'let' is block-scoped, so redeclaring a 'let' variable inside of a block creates a different 'let' variable with the same name whose scope is inside the block:
 
-// Using new arrow function syntax
-const addNums = (numOne, numTwo) => {
-    return numOne + numTwo;
-};
+let two = 'two: declared outside the block';
 
-// One parameter, omitting the parentheses
+if (true === true) {
+    let two = 'two: declared inside the block';
+    console.log(two); // prints 'two: declared inside the block'
+}
+
+console.log(two); // prints 'two: declared outside the block', because two declared inside the block is a separate variable. The 'let' variables are unrelated and therefore are unaffected by each other.
+
+// var is function-scoped, so changing its value in a block causes its value in the outer environment to change as well:
+
+var three = 'three: declared outside the block';
+
+if (true === true) {
+    three = 'three: changed inside the block'; // notice: we don't redeclare
+    console.log(three); // prints 'three: changed inside the block'
+}
+
+console.log(three); // also prints 'three: changed inside the block', because the variable has function scope. This means that the value change in the block is reflected throughout the function, i.e., outside the block.
+
+// let is block-scoped, so changing its value in a block does change its value outside the block _if_ the variable is not redeclared in the block:
+
+let four = 'four: outside the block';
+
+if (true === true) {
+    four = 'four: inside the block'; // notice: we don't redeclare the variable
+    console.log(four); // prints 'four: inside the block'
+}
+
+console.log(four); // prints 'four: inside the block', b
+
+console.log('==========================');
+
 const printProfileData = profileDataArr => {
-    console.log(profileDataArr);
+    for (let i = 0; i < profileDataArr.length; i += 1) {
+        console.log(profileDataArr[i]);
+    }
 };
 
-const addNums = (numOne, numTwo) => numOne + numTwo;
-
-const sum = addNums(5, 3); // add sum
+profileDataArr.forEach(profileItem => console.log(profileItem));
