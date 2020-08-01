@@ -1,4 +1,6 @@
 const inquirer = require('inquirer');
+const generatePage = require('./src/page-template.js');
+const fs = require('fs');
 
 const promptUser = () => {
     return inquirer.prompt([{
@@ -126,19 +128,17 @@ const promptProject = portfolioData => {
 promptUser()
     .then(promptProject)
     .then(portfolioData => {
-        console.log(portfolioData);
-    });
-// const fs = require('fs');
-// const inquirer = require('inquirer');
+        const pageHTML = generatePage(portfolioData);
 
-// const generatePage = require('./src/page-template.js');
+        fs.writeFile('index.html', generatePage(name, github), err => {
+            if (err) throw new Error(err);
+
+            console.log('Portfolio Complete! Check out index.html to see the output');
+        });
+    });
+
 
 // const profileDataArgs = process.argv.slice(2);
 
+const { projects, about, ...header } = templateData;
 // const [name, github] = profileDataArgs;
-
-// fs.writeFile('index.html', generatePage(name, github), err => {
-//     if (err) throw new Error(err);
-
-//     console.log('Portfolio Complete! Check out index.html to see the output');
-// })
