@@ -1,0 +1,26 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "application init v1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/withchristopher/node-portfolio.git"
+  },
+  "keywords": [
+    "node",
+    "app"
+  ],
+  "author": "csmaxwel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/withchristopher/node-portfolio/issues"
+  },
+  "homepage": "https://github.com/withchristopher/node-portfolio#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
+}
